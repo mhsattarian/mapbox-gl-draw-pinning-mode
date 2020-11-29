@@ -1,6 +1,6 @@
 {
   "name": "mapbox-gl-draw-pinning-mode",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "pinning drawing mode for mapbox-gl-draw",
   "main": "dist/mapbox-gl-draw-pinning-mode.js",
   "module": "index.js",
