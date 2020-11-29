@@ -1,0 +1,46 @@
+{
+  "name": "mapbox-gl-draw-pinning-mode",
+  "version": "0.0.0",
+  "description": "pinning drawing mode for mapbox-gl-draw",
+  "main": "dist/mapbox-gl-draw-pinning-mode.js",
+  "module": "index.js",
+  "scripts": {
+    "start": "rollup -w --config rollup.dev.config.js",
+    "build": "rollup --config rollup.config.js"
+  },
+  "devDependencies": {
+    "@mapbox/mapbox-gl-draw": "^1.2.0",
+    "@rollup/plugin-html": "^0.2.0",
+    "@rollup/plugin-node-resolve": "^10.0.0",
+    "rollup": "^2.33.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-delete": "^2.0.0",
+    "rollup-plugin-serve": "^1.1.0",
+    "rollup-plugin-terser": "^7.0.2"
+  },
+  "peerDependencies": {
+    "@mapbox/mapbox-gl-draw": "^1.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/mhsattarian/mapbox-gl-draw-pinning-mode.git"
+  },
+  "keywords": [
+    "mapbox",
+    "mapbox-gl",
+    "mapbox-gl-draw",
+    "draw",
+    "mode",
+    "pinning",
+    "temporary"
+  ],
+  "author": "Mohammad H. Sattarian (mh_sattarian@outlook.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mhsattarian/mapbox-gl-draw-pinning-mode/issues"
+  },
+  "homepage": "https://github.com/mhsattarian/mapbox-gl-draw-pinning-mode#readme",
+  "dependencies": {
+    "@turf/turf": "^5.1.6"
+  }
+}

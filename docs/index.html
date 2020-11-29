@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mapbox Gl Draw Pinning Mode (Demo)</title>
+
+    <style>
+      @import "https://unpkg.com/modern-normalize@1.0.0/modern-normalize.css";
+      @import url("https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css");
+      @import url("https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.0/mapbox-gl-draw.css");
+      @import url("https://unpkg.com/nprogress@0.2.0/nprogress.css");
+
+      h1,
+      p {
+        font-family: Lato;
+      }
+
+      .map-wrapper {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        border-radius: inherit;
+      }
+
+      #map {
+        width: 100%;
+        height: 100%;
+      }
+
+      .mapboxgl-ctrl-group button.pinning_mode {
+        background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8' standalone='no'%3F%3E%3Csvg xmlns:dc='http://purl.org/dc/elements/1.1/' xmlns:cc='http://creativecommons.org/ns%23' xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns%23' xmlns:svg='http://www.w3.org/2000/svg' xmlns='http://www.w3.org/2000/svg' xmlns:sodipodi='http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd' xmlns:inkscape='http://www.inkscape.org/namespaces/inkscape' version='1.1' id='Layer_1' x='0px' y='0px' viewBox='0 0 16 16' xml:space='preserve' width='16' height='16' sodipodi:docname='safety-pin.svg' inkscape:version='1.0.1 (3bc2e813f5, 2020-09-07)'%3E%3Cdefs id='defs15' /%3E%3Csodipodi:namedview pagecolor='%23ffffff' bordercolor='%23666666' borderopacity='1' objecttolerance='10' gridtolerance='10' guidetolerance='10' inkscape:pageopacity='0' inkscape:pageshadow='2' inkscape:window-width='1920' inkscape:window-height='1021' id='namedview13' showgrid='false' inkscape:zoom='15.079052' inkscape:cx='18.747162' inkscape:cy='18.172827' inkscape:window-x='0' inkscape:window-y='0' inkscape:window-maximized='1' inkscape:current-layer='Layer_1' inkscape:document-rotation='0' /%3E%3Cg id='g837' transform='matrix(0.36077483,0,0,0.36077483,0.7859139,0.78169848)'%3E%3Cpath d='M 11,2 C 11,2 1.786,30.941 1.591,31.999 a 5.5,5.5 0 0 0 9.298,4.89 C 12.481,35.297 32,16 32,16' fill='none' stroke='%237496C4' stroke-miterlimit='10' id='path2' style='fill:none;fill-opacity:1;stroke:%23000000;stroke-opacity:1' /%3E%3Cpath d='M 31.3,18.685 C 29.5,16.8 29.5,14.982 29.5,11 v -0.266 a 2.987,2.987 0 0 0 2,0.766 c 1.654,0 3,-1.346 3,-3 0,-1.654 -1.346,-3 -3,-3 -1.654,0 -3,1.346 -3,3 0,0.768 0.29,1.469 0.766,2 H 29 c -3.982,0 -5.8,0 -7.683,-1.796 A 8.09,8.09 0 0 1 21.186,8.573 L 26.154,3.605 C 27.524,2.248 29.343,1.5 31.276,1.5 c 1.933,0 3.751,0.748 5.123,2.107 2.81,2.822 2.81,7.418 -0.003,10.243 L 31.43,18.816 C 31.387,18.773 31.343,18.73 31.3,18.685 Z' fill='%23B6C9D6' id='path4' style='fill:%23788b9c;fill-opacity:1' /%3E%3Cpath d='m 31.276,2 c 1.8,0 3.494,0.697 4.767,1.957 2.618,2.63 2.618,6.91 0.002,9.538 l -0.352,0.352 -4.251,4.251 C 30.09,16.536 30.006,14.886 30.001,11.662 30.455,11.879 30.964,12 31.5,12 33.43,12 35,10.43 35,8.5 35,6.57 33.43,5 31.5,5 a 3.504,3.504 0 0 0 -3.162,5 C 25.114,9.995 23.465,9.911 21.905,8.562 L 26.504,3.963 A 6.74,6.74 0 0 1 31.276,2 m 0,-1 A 7.77,7.77 0 0 0 25.801,3.252 L 20.495,8.558 C 20.649,8.727 20.8,8.9 20.973,9.065 23,11 25,11 29,11 c 0,4 0,6 1.938,8.031 0.165,0.173 0.338,0.324 0.507,0.479 l 4.955,-4.954 0.352,-0.352 c 2.998,-3.012 2.998,-7.939 0,-10.951 A 7.77,7.77 0 0 0 31.276,1 Z M 31.5,11 a 2.5,2.5 0 1 1 0,-5 2.5,2.5 0 0 1 0,5 z' fill='%23788B9C' id='path6' style='fill:%23241c1c' /%3E%3Cpath d='m 7,28 c 2.757,0 5,2.243 5,5 0,2.757 -2.243,5 -5,5 C 4.243,38 2,35.757 2,33 2,30.243 4.243,28 7,28 M 7,27 A 6,6 0 1 0 7,39 6,6 0 0 0 7,27 Z' fill='%23788B9C' id='path8' style='fill:%23000000' /%3E%3C/g%3E%3Cmetadata id='metadata10'%3E%3Crdf:RDF%3E%3Crdf:Description about='https://iconscout.com/legal%23licenses' dc:title='safety,pin' dc:description='safety,pin' dc:publisher='Iconscout' dc:date='2017-10-29' dc:format='image/svg+xml' dc:language='en'%3E%3Cdc:creator%3E%3Crdf:Bag%3E%3Crdf:li%3EIcons8%3C/rdf:li%3E%3C/rdf:Bag%3E%3C/dc:creator%3E%3C/rdf:Description%3E%3Ccc:Work rdf:about=''%3E%3Cdc:format%3Eimage/svg+xml%3C/dc:format%3E%3Cdc:type rdf:resource='http://purl.org/dc/dcmitype/StillImage' /%3E%3C/cc:Work%3E%3C/rdf:RDF%3E%3C/metadata%3E%3C/svg%3E%0A");
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.9/mapbox-gl-draw.js"></script>
+    <script src="mapbox-gl-draw-pinning-mode.js"></script>
+
+    <script type="module">
+      import nprogress from "https://cdn.skypack.dev/nprogress";
+      window.nprogress = nprogress;
+      nprogress.start();
+    </script>
+
+    <script type="text/babel" data-type="module">
+      import React, {
+        useRef,
+        useState,
+        useEffect,
+      } from "https://cdn.skypack.dev/react";
+      import ReactDOM from "https://cdn.skypack.dev/react-dom";
+
+      class extendDrawBar {
+        constructor(opt) {
+          let ctrl = this;
+          ctrl.draw = opt.draw;
+          ctrl.buttons = opt.buttons || [];
+          ctrl.onAddOrig = opt.draw.onAdd;
+          ctrl.onRemoveOrig = opt.draw.onRemove;
+        }
+        onAdd(map) {
+          let ctrl = this;
+          ctrl.map = map;
+          ctrl.elContainer = ctrl.onAddOrig(map);
+          ctrl.buttons.forEach((b) => {
+            ctrl.addButton(b);
+          });
+          return ctrl.elContainer;
+        }
+        onRemove(map) {
+          ctrl.buttons.forEach((b) => {
+            ctrl.removeButton(b);
+          });
+          ctrl.onRemoveOrig(map);
+        }
+        addButton(opt) {
+          let ctrl = this;
+          var elButton = document.createElement("button");
+          elButton.className = "mapbox-gl-draw_ctrl-draw-btn";
+          elButton.setAttribute("title", opt.title);
+          if (opt.classes instanceof Array) {
+            opt.classes.forEach((c) => {
+              elButton.classList.add(c);
+            });
+          }
+          elButton.addEventListener(opt.on, opt.action);
+          ctrl.elContainer.appendChild(elButton);
+          opt.elButton = elButton;
+        }
+        removeButton(opt) {
+          opt.elButton.removeEventListener(opt.on, opt.action);
+          opt.elButton.remove();
+        }
+      }
+
+      export default function App() {
+        if (mapboxgl.getRTLTextPluginStatus() === "unavailable")
+          mapboxgl.setRTLTextPlugin(
+            "https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.3/mapbox-gl-rtl-text.js",
+            (err) => {
+              err && console.error(err);
+            },
+            true
+          );
+        let mapRef = useRef(null);
+
+        useEffect(() => {
+          const map = new mapboxgl.Map({
+            container: mapRef.current || "",
+            style: `https://map.ir/vector/styles/main/mapir-xyz-light-style.json`,
+            center: [51.3857, 35.6102],
+            zoom: 10,
+            pitch: 0,
+            interactive: true,
+            hash: true,
+            attributionControl: true,
+            transformRequest: (url) => {
+              return {
+                url: url,
+                headers: {
+                  "x-api-key":
+                    "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImRiZWU0YWU4OTk4OTA3MmQ3OTFmMjQ4ZDE5N2VhZTgwZWU2NTUyYjhlYjczOWI2NDdlY2YyYzIzNWRiYThiMzIzOTM5MDkzZDM0NTY2MmU3In0.eyJhdWQiOiI5NDMyIiwianRpIjoiZGJlZTRhZTg5OTg5MDcyZDc5MWYyNDhkMTk3ZWFlODBlZTY1NTJiOGViNzM5YjY0N2VjZjJjMjM1ZGJhOGIzMjM5MzkwOTNkMzQ1NjYyZTciLCJpYXQiOjE1OTA4MjU0NzIsIm5iZiI6MTU5MDgyNTQ3MiwiZXhwIjoxNTkzNDE3NDcyLCJzdWIiOiIiLCJzY29wZXMiOlsiYmFzaWMiXX0.M_z4xJlJRuYrh8RFe9UrW89Y_XBzpPth4yk3hlT-goBm8o3x8DGCrSqgskFfmJTUD2wC2qSoVZzQKB67sm-swtD5fkxZO7C0lBCMAU92IYZwCdYehIOtZbP5L1Lfg3C6pxd0r7gQOdzcAZj9TStnKBQPK3jSvzkiHIQhb6I0sViOS_8JceSNs9ZlVelQ3gs77xM2ksWDM6vmqIndzsS-5hUd-9qdRDTLHnhdbS4_UBwNDza47Iqd5vZkBgmQ_oDZ7dVyBuMHiQFg28V6zhtsf3fijP0UhePCj4GM89g3tzYBOmuapVBobbX395FWpnNC3bYg7zDaVHcllSUYDjGc1A",
+                  "Mapir-SDK": "reactjs",
+                },
+              };
+            },
+          });
+
+          const draw = new MapboxDraw({
+            modes: {
+              ...MapboxDraw.modes,
+              pinning_mode: mapboxGlDrawPinningMode,
+            },
+          });
+
+          map.on("draw.stall.create", (info) => {
+            console.info("draw.stall.create", info);
+          });
+
+          map.once("load", () => {
+            nprogress.done();
+            map.resize();
+
+            var drawBar = new extendDrawBar({
+              draw: draw,
+              buttons: [
+                {
+                  on: "click",
+                  action: () => {
+                    draw.changeMode("pinning_mode");
+                  },
+                  classes: ["pinning_mode"],
+                  title: "Pinning Mode tool",
+                },
+              ],
+            });
+
+            map.addControl(drawBar, "top-right");
+
+            draw.set({
+              type: "FeatureCollection",
+              features: [
+                {
+                  id: "example-id",
+                  type: "Feature",
+                  properties: {},
+                  geometry: {
+                    coordinates: [
+                      [
+                        [51.41742415918904, 35.73019558439101],
+                        [51.31319413385742, 35.702773908694724],
+                        [51.378997493472525, 35.665562843119986],
+                        [51.45008537540798, 35.67776544979942],
+                        [51.46619566741822, 35.70822028156377],
+                        [51.41742415918904, 35.73019558439101],
+                      ],
+                    ],
+                    type: "Polygon",
+                  },
+                },
+                {
+                  id: "example2-id",
+                  type: "Feature",
+                  properties: {},
+                  geometry: {
+                    coordinates: [
+                      [
+                        [52.4267578125, 35.71083783530009],
+                        [51.45008537540798, 35.67776544979942],
+                        [51.378997493472525, 35.665562843119986],
+                        [50.80078125, 35.31736632923788],
+                        [51.73461914062499, 35.20298910562885],
+                        [52.4267578125, 35.71083783530009],
+                      ],
+                    ],
+                    type: "Polygon",
+                  },
+                },
+                {
+                  id: "b053f728538bdaf13c0dc1ca3cfa7747",
+                  type: "Feature",
+                  properties: {},
+                  geometry: {
+                    coordinates: [
+                      [
+                        [51.46619566741822, 35.70822028156377],
+                        [51.950117144662045, 35.904082707305705],
+                        [52.4267578125, 35.71083783530009],
+                        [51.45008537540798, 35.67776544979942],
+                        [51.46619566741822, 35.70822028156377],
+                        [51.46619566741822, 35.70822028156377],
+                      ],
+                    ],
+                    type: "Polygon",
+                  },
+                },
+              ],
+            });
+          });
+        }, []);
+
+        return (
+          <div className="map-wrapper">
+            <div id="map" ref={mapRef} />
+          </div>
+        );
+      }
+
+      ReactDOM.render(<App />, document.getElementById("root"));
+    </script>
+  </body>
+</html>
