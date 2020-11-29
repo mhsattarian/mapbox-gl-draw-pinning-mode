@@ -2,7 +2,7 @@
 
 ![npm](https://img.shields.io/npm/v/mapbox-gl-draw-pinning-mode?color=green)
 
-Custom mode for Mapbox GL Draw for pin shared coordinates together during edit.
+Custom mode for [Mapbox GL Draw](https://github.com/mapbox/mapbox-gl-draw) for pinning shared coordinates together during edit.
 
 ## Demo
 
@@ -38,6 +38,8 @@ const draw = new MapboxDraw({
 // inherited from, and acting similar to simple_select
 draw.changeMode("pinning_mode");
 ```
+
+This mode inherits `simple_select` mode from the `mapbox-gl-draw`, so the Behavior is quite the same.
 
 ## Acknowledgement
 
