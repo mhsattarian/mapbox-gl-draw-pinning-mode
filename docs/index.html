@@ -81,7 +81,7 @@
         }
         addButton(opt) {
           let ctrl = this;
-          var elButton = document.createElement("button");
+          const elButton = document.createElement("button");
           elButton.className = "mapbox-gl-draw_ctrl-draw-btn";
           elButton.setAttribute("title", opt.title);
           if (opt.classes instanceof Array) {
@@ -147,7 +147,7 @@
             nprogress.done();
             map.resize();
 
-            var drawBar = new extendDrawBar({
+            const drawBar = new extendDrawBar({
               draw: draw,
               buttons: [
                 {

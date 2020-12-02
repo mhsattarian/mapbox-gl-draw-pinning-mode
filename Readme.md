@@ -25,7 +25,7 @@ or use CDN:
 ## Usage
 
 ```js
-import mapboxGlDrawPinningMode from "mapbox-gl-draw-pinning-mode.js";
+import mapboxGlDrawPinningMode from "mapbox-gl-draw-pinning-mode";
 // or global variable `mapboxGlDrawPinningMode` when using script tag
 
 const draw = new MapboxDraw({

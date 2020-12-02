@@ -74,7 +74,7 @@ pinMode.onSetup = function () {
           });
 
           if (alreadyDrawnIdx !== -1) {
-            vertices[alreadyDrawnIdx].vertex.properties.featureIDs.push([
+            vertices[alreadyDrawnIdx].vertex.properties.featureIds.push([
               feature.id,
               vIdx,
             ]);
@@ -83,7 +83,7 @@ pinMode.onSetup = function () {
               vertex: this.newFeature({
                 type: geojsonTypes.FEATURE,
                 properties: {
-                  featureIDs: [[feature.id, vIdx]],
+                  featureIds: [[feature.id, vIdx]],
                 },
                 id: feature.id + "-" + vIdx,
                 geometry: {
@@ -131,7 +131,7 @@ pinMode.onMouseDown = function (state, e) {
 pinMode.update = function (state, e) {
   if (!state.selectedPointID) return;
   const movingPoint = this.getSelected()[0];
-  movingPoint.properties.featureIDs.forEach(([id, vIdx]) => {
+  movingPoint.properties.featureIds.forEach(([id, vIdx]) => {
     const f = state.draw.get(id);
     f.geometry.coordinates[0][vIdx] = movingPoint.coordinates;
     state.draw.add(f);
