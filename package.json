@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "pinning drawing mode for mapbox-gl-draw",
   "main": "dist/mapbox-gl-draw-pinning-mode.js",
-  "module": "index.js",
+  "module": "src/index.js",
   "scripts": {
     "start": "rollup -w --config rollup.dev.config.js",
     "build": "rollup --config rollup.config.js"
