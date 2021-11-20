@@ -141,7 +141,11 @@ pinMode.update = function (state, e) {
     newFeatures.push(f)
     state.draw.add(f);
   });
-  this.fireUpdate(newFeatures)
+  // this.fireUpdate(newFeatures)
+  this.map.fire(events.UPDATE, {
+    action: 'Pinning',
+    features: newFeatures
+});
 };
 
 pinMode.onMouseUp = function (state, e) {
