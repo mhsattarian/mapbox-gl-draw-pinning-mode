@@ -1,4 +1,4 @@
-import { geojsonTypes } from "@mapbox/mapbox-gl-draw/src/constants";
+import { geojsonTypes, events } from "@mapbox/mapbox-gl-draw/src/constants";
 
 import doubleClickZoom from "@mapbox/mapbox-gl-draw/src/lib/double_click_zoom";
 import SimpleSelect from "@mapbox/mapbox-gl-draw/src/modes/simple_select";
@@ -117,8 +117,11 @@ pinMode.onSetup = function () {
   return state;
 };
 
-pinMode.fireUpdate = function () {
-  // Do nothing
+pinMode.fireUpdate = function (newF) {
+  this.map.fire(events.UPDATE, {
+    action: 'Pinning',
+    features: newF
+});
 };
 
 pinMode.onMouseDown = function (state, e) {
@@ -131,11 +134,14 @@ pinMode.onMouseDown = function (state, e) {
 pinMode.update = function (state, e) {
   if (!state.selectedPointID) return;
   const movingPoint = this.getSelected()[0];
+  let newFeatures = []
   movingPoint.properties.featureIds.forEach(([id, vIdx]) => {
     const f = state.draw.get(id);
     f.geometry.coordinates[0][vIdx] = movingPoint.coordinates;
+    newFeatures.push(f)
     state.draw.add(f);
   });
+  this.fireUpdate(newFeatures)
 };
 
 pinMode.onMouseUp = function (state, e) {
